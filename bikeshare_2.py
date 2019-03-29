@@ -127,14 +127,27 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # display most commonly used start station
+     # TO DO: display most commonly used start station
+    most_common_start_station = df['Start Station'].mode()[0]
+    print("The most common start station is {}.".format(most_common_start_station))
 
-
-    # display most commonly used end station
-
-
-    # display most frequent combination of start station and end station trip
-
+    # TO DO: display most commonly used end station
+    most_common_end_station = df['End Station'].mode()[0]
+    print("The most common end station is {}.".format(most_common_end_station))
+    
+   
+    # TO DO: display most frequent combination of start station and end station trip
+    most_common_start_end_station = df[['Start Station', 'End Station']].mode().loc[0]
+    print("The most commonly used start station and end station : {}, {}".format(most_common_start_end_station[0], most_common_start_end_station[1]))
+    
+     #calculate trip duration 
+    total_trip = df['Start Station'] + ' - ' + df['End Station']
+    
+    # Find most Frequent Trip
+    most_frequent_trip = total_trip.mode()[0]
+    print('Most frequent Trip is: {}'.format(most_frequent_trip))
+    print('Frequent Trip Counts: {}'.format(total_trip.value_counts()[most_frequent_trip]))
+    
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -146,10 +159,22 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # display total travel time
+    # TO DO: display total travel time
+    trip_length = df['Trip Duration'].sum()
+    total_travel_time = trip_length
+    print("The total travel time is {}.".format(total_travel_time))
 
-
-    # display mean travel time
+    # TO DO: display mean travel time
+    average_travel_time = df['Trip Duration'].mean()
+    print("The average travel time is {}.".format(average_travel_time))
+    
+    # Display the quickest travel time
+    quickest_travel_time = df['Trip Duration'].min()
+    print("The fastest travel time was {}.".format(quickest_travel_time))
+                       
+    #Display the longest travel time
+    longest_travel_time = df['Trip Duration'].max()
+    print("The slowest travel time was {}.".format(longest_travel_time))
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
