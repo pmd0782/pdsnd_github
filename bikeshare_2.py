@@ -217,9 +217,32 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+def raw_data(df):
+    """ Accesses csv and displays 5 rows of its raw data if user types "yes" """
+ 
+ 
+    raw_data_request = input('\nWould you like to see 5 rows of raw data?  (Yes or No)\n> ').lower()
+    if raw_data_request == 'yes':
+        print('\nAccessing Raw Data...\n')
+        start_time = time.time()
+        # index number = 0
+        i = 0
+        # this while loop cycles through raw data in csv and displays it
+        while True:
+            print(df.iloc[i:i + 5])
+            i += 5
+            print("\nThis took %s seconds." % (time.time() - start_time))
+            more_data_request = input('\nWould you like to see 5 more rows of raw data?  (Yes or No)\n> ').lower()
+            # breaks out of loop if user doesn't type "yes"
+            if more_data_request != 'yes':
+                break    
 
-def main():
-    while True:
+    print("\nThis took %s seconds." % (time.time() - start_time))
+    print('-'*40)
+
+
+def main():    
+    while True :
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
@@ -227,7 +250,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-
+        raw_data(df)
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
