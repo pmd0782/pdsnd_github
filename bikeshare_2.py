@@ -6,6 +6,12 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
+cities = ["chicago", "new york city", "washington"]
+months = ['january', 'february', 'march', 'april', 'may', 'june','all']
+days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",'all']
+
+
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -16,13 +22,35 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-
-
-    # get user input for month (all, january, february, ... , june)
-
-
-    # get user input for day of week (all, monday, tuesday, ... sunday)
+    city = ""
+    while True :
+        city = input("Enter city from chicago, new york city or washington: \n").lower()
+        if city not in cities:
+            print ("The city entered is not valid")
+            continue
+        else:
+            break
+            
+            
+    # TO DO: get user input for month (all, january, february, ... , june)
+    month = ""
+    while True :
+        month = input(" Enter: january, february, march, april, may, june:\nType All to filter data by all months.\n").lower()
+        if month not in months:
+            print ("The month entered is not valid")
+            continue
+        else:
+            break                
+    
+    # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
+    day = ""
+    while True :
+        day = input("Enter day: monday, tuesday, wednesday, thursday, friday, saturday or sunday: \nType All to filter by all days. \n").lower()
+        if day not in days:
+            print ("The day entered is not valid")
+            continue
+        else:
+            break        
 
 
     print('-'*40)
